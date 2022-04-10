@@ -49,7 +49,6 @@ public class UnicycleController : MonoBehaviour
     {
         if (wheelCollider.brakeTorque != 0)
         {
-            print("brake");
             return;
         }
         wheelCollider.motorTorque = _vert * maxMotor;
