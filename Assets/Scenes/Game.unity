@@ -712,7 +712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wheelCollider: {fileID: 337254811}
   wheel: {fileID: 1923304012}
-  maxMotor: 10
+  maxMotor: 5
   maxAngle: 5
 --- !u!1001 &1923304011
 PrefabInstance:
