@@ -8,6 +8,7 @@ public class UnicycleController : MonoBehaviour
 {
     [SerializeField] private WheelCollider wheelCollider;
     [SerializeField] private Transform wheel;
+    [SerializeField] private Transform seat;
     [SerializeField] private float maxMotor = 10;
     [SerializeField] private float maxAngle = 5;
 
@@ -28,9 +29,19 @@ public class UnicycleController : MonoBehaviour
         Quaternion _quat = wheel.rotation;
 
         wheelCollider.GetWorldPose(out _pos, out _quat);
+
+        float rotationYDelta = _quat.eulerAngles.y - wheel.eulerAngles.y;
         
         wheel.position = _pos;
         wheel.rotation = _quat;
+        
+        //
+        // if (Math.Abs(rotationYDelta) > maxAngle)
+        //     rotationYDelta %= maxAngle;
+        //
+        Vector3 seatRotation = seat.eulerAngles; 
+        seatRotation.y = wheel.eulerAngles.y % 180;
+        seat.eulerAngles = seatRotation;
     }
 
     private void Accelerate()
@@ -42,8 +53,6 @@ public class UnicycleController : MonoBehaviour
     {
         _steeringAngle = maxAngle * _horz;
         wheelCollider.steerAngle = _steeringAngle;
-        
-        print(wheelCollider.steerAngle);
     }
     
     
@@ -52,6 +61,8 @@ public class UnicycleController : MonoBehaviour
     {
         _vert = Input.GetAxis("Vertical") * maxMotor;
         _horz = Input.GetAxis("Horizontal") * maxAngle;
+        
+        print($"{_vert} , {_horz}");
     }
     
     
