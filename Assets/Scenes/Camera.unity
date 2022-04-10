@@ -1053,6 +1053,7 @@ MonoBehaviour:
   seat: {fileID: 1145125352}
   maxMotor: 5
   maxAngle: 5
+  brakes: 100
 --- !u!54 &1433744742
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class UnicycleController : MonoBehaviour
     [SerializeField] private Transform seat;
     [SerializeField] private float maxMotor = 10;
     [SerializeField] private float maxAngle = 5;
+    [SerializeField] private float brakes = 5;
 
     private float _vert, _horz;
     private float _steeringAngle;
@@ -46,6 +47,11 @@ public class UnicycleController : MonoBehaviour
 
     private void Accelerate()
     {
+        if (wheelCollider.brakeTorque != 0)
+        {
+            print("brake");
+            return;
+        }
         wheelCollider.motorTorque = _vert * maxMotor;
     }
 
@@ -59,10 +65,13 @@ public class UnicycleController : MonoBehaviour
 
     private void GetInput()
     {
-        _vert = Input.GetAxis("Vertical") * maxMotor;
-        _horz = Input.GetAxis("Horizontal") * maxAngle;
+        float currVert = Input.GetAxis("Vertical") * maxMotor;
+        float currHorz = Input.GetAxis("Horizontal") * maxAngle;
         
-        print($"{_vert} , {_horz}");
+        wheelCollider.brakeTorque = (_vert == currVert && Math.Abs(currVert) < 1) ? brakes : 0;
+        
+        _vert = currVert;
+        _horz = currHorz;
     }
     
     
