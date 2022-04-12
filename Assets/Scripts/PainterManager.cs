@@ -60,6 +60,8 @@ public class PainterManager :Singelton<PainterManager>
         RenderTexture support = paintable.getSupport();
         Renderer rend = paintable.getRenderer();
 
+        print($"painting at: {pos}");
+        
         paintMaterial.SetFloat(prepareUVID, 0);
         paintMaterial.SetVector(positionID, pos);
         paintMaterial.SetFloat(hardnessID, hardness);
