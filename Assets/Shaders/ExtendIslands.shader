@@ -1,5 +1,4 @@
-Shader "Unlit/ExtendIslands"
-{
+﻿Shader "TNTC/ExtendIslands"{
     Properties{
         _MainTex ("Texture", 2D) = "white" {}
         _UVIslands ("Texture UVIsalnds", 2D) = "white" {}
@@ -49,7 +48,7 @@ Shader "Unlit/ExtendIslands"
 
                 if(island.z < 1){
                     float4 extendedColor = color;
-                    for	(int i = 0; i < 8; i++){
+                    for	(int i = 0; i < offsets.Length; i++){
                         float2 currentUV = uv + offsets[i] * _MainTex_TexelSize.xy;
                         float4 offsettedColor = tex2D(_MainTex, currentUV);
                         extendedColor = max(offsettedColor, extendedColor);
