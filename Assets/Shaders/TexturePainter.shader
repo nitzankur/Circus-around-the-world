@@ -55,7 +55,10 @@ Shader "Unlit/NewUnlitShader"
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv =v.uv, _MainTex;
                 float4 uv = float4(0,0,0,1);
+
+                //convert [0,1] to [-1,1]
                 uv.xy = float2(1,_ProjectionParams.x) * (v.uv.xy * float2(2,2) - float2(1,1));
+                
                 //in the video he write uv.xy =float2(1,_ProjectionParams.x) *(v.uv.xy * 2-1)/understand if its matter
                 o.vertex = uv;
                 UNITY_TRANSFER_FOG(o,o.vertex);
