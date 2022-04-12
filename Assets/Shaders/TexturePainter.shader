@@ -72,8 +72,6 @@ Shader "Unlit/NewUnlitShader"
                 float f = mask(i.worldPos,_PainterPosition,_Radius,_Hardness);
                 float edge = f*_Strength;
                 // sample the texture
-                
-                // apply fog
                 return lerp(col,_PainterColor,edge);
                 
             }
