@@ -1991,7 +1991,7 @@
     },
     "m_Name": "Mask",
     "m_DefaultReferenceName": "Texture2D_e8b8d7e3119e409e9337889d1670f8be",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_MaskTexture",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

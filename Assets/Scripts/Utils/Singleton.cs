@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Singelton<T> : MonoBehaviour where T: MonoBehaviour{
+public class Singleton<T> : MonoBehaviour where T: MonoBehaviour{
     
     public static bool verbose = false;
     public static bool keepAlive = true;
@@ -52,4 +50,3 @@ public class Singelton<T> : MonoBehaviour where T: MonoBehaviour{
     }
 
 }
-

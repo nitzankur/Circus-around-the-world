@@ -1055,7 +1055,7 @@
     },
     "m_Name": "Mask",
     "m_DefaultReferenceName": "Texture3D_610cafb5955d4bd199b245252c822bbe",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_MaskTexture",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

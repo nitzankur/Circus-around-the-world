@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class PainterManager :Singelton<PainterManager>
-{
+public class PaintManager : Singleton<PaintManager>{
+
     public Shader texturePaint;
     public Shader extendIslands;
+
     int prepareUVID = Shader.PropertyToID("_PrepareUV");
     int positionID = Shader.PropertyToID("_PainterPosition");
     int hardnessID = Shader.PropertyToID("_Hardness");
@@ -18,13 +17,12 @@ public class PainterManager :Singelton<PainterManager>
     int uvOffsetID = Shader.PropertyToID("_OffsetUV");
     int uvIslandsID = Shader.PropertyToID("_UVIslands");
 
-    private Material paintMaterial;
+    Material paintMaterial;
     Material extendMaterial;
 
     CommandBuffer command;
-   
-    public override void Awake()
-    {
+
+    public override void Awake(){
         base.Awake();
         
         paintMaterial = new Material(texturePaint);
@@ -34,7 +32,6 @@ public class PainterManager :Singelton<PainterManager>
     }
 
     public void initTextures(Paintable paintable){
-        print("Init");
         RenderTexture mask = paintable.getMask();
         RenderTexture uvIslands = paintable.getUVIslands();
         RenderTexture extend = paintable.getExtend();
@@ -61,15 +58,13 @@ public class PainterManager :Singelton<PainterManager>
         RenderTexture support = paintable.getSupport();
         Renderer rend = paintable.getRenderer();
 
-        print($"painting at: {pos}");
-        
         paintMaterial.SetFloat(prepareUVID, 0);
         paintMaterial.SetVector(positionID, pos);
         paintMaterial.SetFloat(hardnessID, hardness);
         paintMaterial.SetFloat(strengthID, strength);
         paintMaterial.SetFloat(radiusID, radius);
         paintMaterial.SetTexture(textureID, support);
-        paintMaterial.SetColor(colorID, color ?? Color.white);
+        paintMaterial.SetColor(colorID, color ?? Color.red);
         extendMaterial.SetFloat(uvOffsetID, paintable.extendsIslandOffset);
         extendMaterial.SetTexture(uvIslandsID, uvIslands);
 
@@ -87,4 +82,3 @@ public class PainterManager :Singelton<PainterManager>
     }
 
 }
-
