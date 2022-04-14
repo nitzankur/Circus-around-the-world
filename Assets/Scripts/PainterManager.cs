@@ -34,6 +34,7 @@ public class PainterManager :Singelton<PainterManager>
     }
 
     public void initTextures(Paintable paintable){
+        print("Init");
         RenderTexture mask = paintable.getMask();
         RenderTexture uvIslands = paintable.getUVIslands();
         RenderTexture extend = paintable.getExtend();
