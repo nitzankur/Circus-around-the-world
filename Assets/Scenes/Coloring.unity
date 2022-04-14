@@ -308,6 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1107023683}
   - component: {fileID: 1107023682}
+  - component: {fileID: 1107023684}
   - component: {fileID: 1107023681}
   - component: {fileID: 1107023680}
   m_Layer: 0
@@ -350,7 +351,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: cb668e822fd59824eacf79ab811891a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -394,6 +395,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1107023684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107023679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2997920eb18e4e438645fc26e792305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extendsIslandOffset: 1
 --- !u!1 &1226399258
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 287985270}
   mouseSingleClick: 0
-  paintColor: {r: 0.6185612, g: 0.8679245, b: 0.2652901, a: 1}
+  paintColor: {r: 1, g: 1, b: 1, a: 1}
   radius: 1
   strength: 0.5
   hardness: 0.1
