@@ -13,8 +13,11 @@ public class UnicycleController : MonoBehaviour
     [SerializeField] private float maxAngle = 5;
     [SerializeField] private float brakes = 5;
 
+    private float lastAngle = 0;
+
     private float _vert, _horz;
     private float _steeringAngle;
+    private float direction;
 
     private void FixedUpdate()
     {
@@ -40,9 +43,14 @@ public class UnicycleController : MonoBehaviour
         // if (Math.Abs(rotationYDelta) > maxAngle)
         //     rotationYDelta %= maxAngle;
         //
-        Vector3 seatRotation = seat.eulerAngles; 
-        seatRotation.y = wheel.eulerAngles.y % 180;
+        print(wheel.eulerAngles.y);
+        Vector3 seatRotation = seat.eulerAngles;
+        seatRotation.y = wheel.eulerAngles.y;
+        if (Math.Abs(seatRotation.y - lastAngle) >= 180) 
+            seatRotation.y %= 180;
         seat.eulerAngles = seatRotation;
+
+        lastAngle = seatRotation.y;
     }
 
     private void Accelerate()
@@ -56,8 +64,9 @@ public class UnicycleController : MonoBehaviour
 
     private void Steer()
     {
-        _steeringAngle = maxAngle * _horz;
-        wheelCollider.steerAngle = _steeringAngle;
+        // _steeringAngle = 180/5 * _horz;
+        // wheelCollider.steerAngle = _steeringAngle;
+        wheelCollider.steerAngle += direction * 5;
     }
     
     
@@ -71,6 +80,14 @@ public class UnicycleController : MonoBehaviour
         
         _vert = currVert;
         _horz = currHorz;
+
+        if (Input.GetKey(KeyCode.D))
+            direction = (direction >= 1) ? 1 : direction + 1;
+        
+        else if (Input.GetKey(KeyCode.A))
+            direction = (direction <= -1) ? -1 : direction - 1;
+        else
+            direction = 0;
     }
     
     

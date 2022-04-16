@@ -51,7 +51,7 @@ public class PaintManager : Singleton<PaintManager>{
     }
 
 
-    public void paint(Paintable paintable, Vector3 pos, float radius = 1f, float hardness = .5f, float strength = .5f, Color? color = null){
+    public void paint(Paintable paintable, Vector3 pos, float radius = 1f, float hardness = 1f, float strength = 1f, Color? color = null){
         print("painting");
         RenderTexture mask = paintable.getMask();
         RenderTexture uvIslands = paintable.getUVIslands();
@@ -65,7 +65,7 @@ public class PaintManager : Singleton<PaintManager>{
         paintMaterial.SetFloat(strengthID, strength);
         paintMaterial.SetFloat(radiusID, radius);
         paintMaterial.SetTexture(textureID, support);
-        paintMaterial.SetColor(colorID, color ?? Color.red);
+        paintMaterial.SetColor(colorID, color ?? Color.white);
         extendMaterial.SetFloat(uvOffsetID, paintable.extendsIslandOffset);
         extendMaterial.SetTexture(uvIslandsID, uvIslands);
 
