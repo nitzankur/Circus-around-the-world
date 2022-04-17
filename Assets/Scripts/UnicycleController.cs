@@ -19,6 +19,9 @@ public class UnicycleController : MonoBehaviour
     private float _steeringAngle;
     private float direction;
 
+    private float _mouseX;
+    private float _mouseY;
+    
     private void FixedUpdate()
     {
         GetInput();
@@ -38,7 +41,7 @@ public class UnicycleController : MonoBehaviour
         
         wheel.position = _pos;
         wheel.rotation = _quat;
-        
+
         //
         // if (Math.Abs(rotationYDelta) > maxAngle)
         //     rotationYDelta %= maxAngle;
@@ -46,9 +49,13 @@ public class UnicycleController : MonoBehaviour
        // print(wheel.eulerAngles.y);
         Vector3 seatRotation = seat.eulerAngles;
         seatRotation.y = wheel.eulerAngles.y;
-        print($"{lastAngle},{ seatRotation.y}");
-        if (Math.Abs(seatRotation.y - lastAngle) >= 180) 
+        if (Math.Abs(seatRotation.y - lastAngle) >= 170)
+        {
+            print($"{lastAngle},{ seatRotation.y}");
             seatRotation.y %= 180;
+            print(seatRotation);
+        }
+        
         seat.eulerAngles = seatRotation;
 
         lastAngle = seatRotation.y;
@@ -65,7 +72,9 @@ public class UnicycleController : MonoBehaviour
 
     private void Steer()
     {
-        _steeringAngle = maxAngle * _horz;
+        // _steeringAngle = maxAngle * _horz;
+        if(_mouseX != 0)
+            _steeringAngle += _mouseX * 5;
         wheelCollider.steerAngle = _steeringAngle;
         // wheelCollider.steerAngle += direction * 5;
     }
@@ -76,6 +85,9 @@ public class UnicycleController : MonoBehaviour
     {
         float currVert = Input.GetAxis("Vertical") * maxMotor;
         float currHorz = Input.GetAxis("Horizontal") * maxAngle;
+
+        _mouseX = Input.GetAxis("Mouse X");
+        _mouseY = Input.GetAxis("Mouse Y");
         
         wheelCollider.brakeTorque = (_vert == currVert && Math.Abs(currVert) < 1) ? brakes : 0;
         
