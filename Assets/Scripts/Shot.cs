@@ -13,6 +13,7 @@ public class Shot : MonoBehaviour
     [SerializeField] private float range = 100f;
     [SerializeField] private Transform parentController;
     [SerializeField] private  CinemachineFreeLook  flCam;
+    public static int shoot_num = 0;
     private CinemachineImpulseSource impulseSource;
 
     private void Start()
@@ -29,6 +30,7 @@ public class Shot : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Shooting();
+            shoot_num++;
         }
         
         parentController.localEulerAngles = new Vector3(Mathf.LerpAngle(parentController.localEulerAngles.x, pressing ? RemapCamera(flCam.m_YAxis.Value, 0, 1, -25, 25) : 0, .3f), angle.y, angle.z);

@@ -43,7 +43,7 @@ public class UnicycleController : MonoBehaviour
         // if (Math.Abs(rotationYDelta) > maxAngle)
         //     rotationYDelta %= maxAngle;
         //
-        print(wheel.eulerAngles.y);
+       // print(wheel.eulerAngles.y);
         Vector3 seatRotation = seat.eulerAngles;
         seatRotation.y = wheel.eulerAngles.y;
         if (Math.Abs(seatRotation.y - lastAngle) >= 180) 

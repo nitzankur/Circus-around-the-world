@@ -12,12 +12,21 @@ public class TakeAnimal : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
+        print("trigger");
         if (other.CompareTag("Animal"))
         {
             print("animal");
-            other.enabled = false;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Transform childTrans = other.transform.Find("Animal");
+                print(other.transform.Find("Animal"));
+                if (childTrans)
+                {
+                    childTrans.gameObject.SetActive(false);
+                }
+            }
         }
     }
 }
