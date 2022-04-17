@@ -46,6 +46,7 @@ public class UnicycleController : MonoBehaviour
        // print(wheel.eulerAngles.y);
         Vector3 seatRotation = seat.eulerAngles;
         seatRotation.y = wheel.eulerAngles.y;
+        print($"{lastAngle},{ seatRotation.y}");
         if (Math.Abs(seatRotation.y - lastAngle) >= 180) 
             seatRotation.y %= 180;
         seat.eulerAngles = seatRotation;
@@ -64,9 +65,9 @@ public class UnicycleController : MonoBehaviour
 
     private void Steer()
     {
-        // _steeringAngle = 180/5 * _horz;
-        // wheelCollider.steerAngle = _steeringAngle;
-        wheelCollider.steerAngle += direction * 5;
+        _steeringAngle = maxAngle * _horz;
+        wheelCollider.steerAngle = _steeringAngle;
+        // wheelCollider.steerAngle += direction * 5;
     }
     
     
