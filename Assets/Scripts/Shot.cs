@@ -18,7 +18,7 @@ public class Shot : MonoBehaviour
 
     private void Start()
     {
-        impulseSource =  flCam.GetComponent<CinemachineImpulseSource>();
+        // impulseSource =  flCam.GetComponent<CinemachineImpulseSource>();
     }
 
     // Update is called once per frame

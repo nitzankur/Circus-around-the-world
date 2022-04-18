@@ -6,12 +6,20 @@ using UnityEngine.PlayerLoop;
 
 public class UnicycleController : MonoBehaviour
 {
+    #region Inspector
+
     [SerializeField] private WheelCollider wheelCollider;
     [SerializeField] private Transform wheel;
     [SerializeField] private Transform seat;
+    [SerializeField] private Transform gun;
     [SerializeField] private float maxMotor = 10;
     [SerializeField] private float maxAngle = 5;
     [SerializeField] private float brakes = 5;
+    [SerializeField] private float _speed = 7;
+    
+    #endregion
+
+    #region Fields
 
     private float lastAngle = 0;
 
@@ -19,9 +27,14 @@ public class UnicycleController : MonoBehaviour
     private float _steeringAngle;
     private float direction;
 
+    private bool started = false;
     private float _mouseX;
     private float _mouseY;
-    
+
+    #endregion
+
+    #region MonoBehaviour
+
     private void FixedUpdate()
     {
         GetInput();
@@ -30,6 +43,11 @@ public class UnicycleController : MonoBehaviour
         UpdateWheelPosition();
     }
 
+    #endregion
+
+
+    #region Methods
+
     private void UpdateWheelPosition()
     {
         Vector3 _pos = wheel.position;
@@ -37,28 +55,22 @@ public class UnicycleController : MonoBehaviour
 
         wheelCollider.GetWorldPose(out _pos, out _quat);
 
-        float rotationYDelta = _quat.eulerAngles.y - wheel.eulerAngles.y;
-        
         wheel.position = _pos;
         wheel.rotation = _quat;
-
-        //
-        // if (Math.Abs(rotationYDelta) > maxAngle)
-        //     rotationYDelta %= maxAngle;
-        //
-       // print(wheel.eulerAngles.y);
-        Vector3 seatRotation = seat.eulerAngles;
-        seatRotation.y = wheel.eulerAngles.y;
-        if (Math.Abs(seatRotation.y - lastAngle) >= 170)
-        {
-            print($"{lastAngle},{ seatRotation.y}");
-            seatRotation.y %= 180;
-            print(seatRotation);
-        }
         
-        seat.eulerAngles = seatRotation;
+        if (_mouseX != 0)
+        {
+            print(_mouseX);
+            // Vector3 gunRotation = gun.transform.localEulerAngles;
+            Vector3 seatRotation = seat.transform.localEulerAngles;
+            
+            // gunRotation.y += _mouseX * _speed;
+            seatRotation.y += _mouseX * _speed;
+            // gunRotation.x += _mouseY * _speed;
 
-        lastAngle = seatRotation.y;
+            // gun.transform.localEulerAngles = gunRotation;
+            seat.transform.localEulerAngles = seatRotation;
+        }
     }
 
     private void Accelerate()
@@ -74,7 +86,7 @@ public class UnicycleController : MonoBehaviour
     {
         // _steeringAngle = maxAngle * _horz;
         if(_mouseX != 0)
-            _steeringAngle += _mouseX * 5;
+            _steeringAngle += _mouseX * _speed;
         wheelCollider.steerAngle = _steeringAngle;
         // wheelCollider.steerAngle += direction * 5;
     }
@@ -88,20 +100,12 @@ public class UnicycleController : MonoBehaviour
 
         _mouseX = Input.GetAxis("Mouse X");
         _mouseY = Input.GetAxis("Mouse Y");
-        
+
         wheelCollider.brakeTorque = (_vert == currVert && Math.Abs(currVert) < 1) ? brakes : 0;
         
         _vert = currVert;
         _horz = currHorz;
-
-        if (Input.GetKey(KeyCode.D))
-            direction = (direction >= 1) ? 1 : direction + 1;
-        
-        else if (Input.GetKey(KeyCode.A))
-            direction = (direction <= -1) ? -1 : direction - 1;
-        else
-            direction = 0;
     }
-    
-    
+
+    #endregion
 }
