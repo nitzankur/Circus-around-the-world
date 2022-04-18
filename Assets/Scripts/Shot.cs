@@ -9,8 +9,6 @@ public class Shot : MonoBehaviour
 
     [SerializeField] private GameObject bullet;
     [SerializeField] private float speed = 100f;
-    [SerializeField] private float damage = 10f;
-    [SerializeField] private float range = 100f;
     [SerializeField] private Transform parentController;
   [SerializeField] private  Cinemachine.CinemachineImpulseSource  source;
     public static int shoot_num = 0;
