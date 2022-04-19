@@ -9,10 +9,8 @@ public class Shot : MonoBehaviour
 
     [SerializeField] private GameObject bullet;
     [SerializeField] private float speed = 100f;
-    [SerializeField] private float damage = 10f;
-    [SerializeField] private float range = 100f;
     [SerializeField] private Transform parentController;
-    [SerializeField] private  CinemachineFreeLook  flCam;
+  [SerializeField] private  Cinemachine.CinemachineImpulseSource  source;
     public static int shoot_num = 0;
     private CinemachineImpulseSource impulseSource;
 
@@ -33,7 +31,7 @@ public class Shot : MonoBehaviour
             shoot_num++;
         }
         
-        parentController.localEulerAngles = new Vector3(Mathf.LerpAngle(parentController.localEulerAngles.x, pressing ? RemapCamera(flCam.m_YAxis.Value, 0, 1, -25, 25) : 0, .3f), angle.y, angle.z);
+     //   parentController.localEulerAngles = new Vector3(Mathf.LerpAngle(parentController.localEulerAngles.x, pressing ? RemapCamera(flCam.m_YAxis.Value, 0, 1, -25, 25) : 0, .3f), angle.y, angle.z);
     }
     
     public void Shooting()
@@ -41,6 +39,9 @@ public class Shot : MonoBehaviour
         GameObject instBullet = Instantiate(bullet,transform.position ,Quaternion.identity) as GameObject;
         Rigidbody instBulletRb = instBullet.GetComponent<Rigidbody>();
         instBulletRb.AddForce(Vector3.forward*speed);
+
+        source = GetComponent<Cinemachine.CinemachineImpulseSource>();
+        source.GenerateImpulse(Camera.main.transform.forward);
     }
     
     float RemapCamera(float value, float from1, float to1, float from2, float to2)
