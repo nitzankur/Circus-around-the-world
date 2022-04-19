@@ -28,8 +28,11 @@ public class UnicycleController : MonoBehaviour
     private float direction;
 
     private bool started = false;
+    
     private float _mouseX;
     private float _mouseY;
+
+    private float rotateX, rotateY;
 
     #endregion
 
@@ -58,18 +61,18 @@ public class UnicycleController : MonoBehaviour
         wheel.position = _pos;
         wheel.rotation = _quat;
         
-        if (_mouseX != 0)
+        if (rotateX != 0)
         {
-            print(_mouseX);
-            // Vector3 gunRotation = gun.transform.localEulerAngles;
             Vector3 seatRotation = seat.transform.localEulerAngles;
-            
-            // gunRotation.y += _mouseX * _speed;
-            seatRotation.y += _mouseX * _speed;
-            // gunRotation.x += _mouseY * _speed;
-
-            // gun.transform.localEulerAngles = gunRotation;
+            seatRotation.y += rotateX;
             seat.transform.localEulerAngles = seatRotation;
+        }
+
+        if (rotateY != 0)
+        {
+            Vector3 gunRotation = gun.transform.localEulerAngles;
+            gunRotation.x -= rotateY;
+            gun.transform.localEulerAngles = gunRotation;
         }
     }
 
@@ -86,9 +89,8 @@ public class UnicycleController : MonoBehaviour
     {
         // _steeringAngle = maxAngle * _horz;
         if(_mouseX != 0)
-            _steeringAngle += _mouseX * _speed;
+            _steeringAngle += rotateX;
         wheelCollider.steerAngle = _steeringAngle;
-        // wheelCollider.steerAngle += direction * 5;
     }
     
     
@@ -101,10 +103,15 @@ public class UnicycleController : MonoBehaviour
         _mouseX = Input.GetAxis("Mouse X");
         _mouseY = Input.GetAxis("Mouse Y");
 
-        wheelCollider.brakeTorque = (_vert == currVert && Math.Abs(currVert) < 1) ? brakes : 0;
-        
+        if (_vert == currVert && Math.Abs(currVert) < 1 || _vert * currVert < 0)
+            wheelCollider.brakeTorque = brakes;
+        else
+            wheelCollider.brakeTorque = 0;
+
         _vert = currVert;
         _horz = currHorz;
+        rotateX = _mouseX * _speed * Time.deltaTime;
+        rotateY = _mouseY * _speed * Time.deltaTime;
     }
 
     #endregion
