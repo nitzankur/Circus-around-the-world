@@ -58,6 +58,11 @@ public class UnicycleController : MonoBehaviour
 
         wheelCollider.GetWorldPose(out _pos, out _quat);
 
+        Vector3 euler = _quat.eulerAngles;
+        euler.y = wheel.eulerAngles.y;
+
+        _quat.eulerAngles = euler;
+        
         wheel.position = _pos;
         wheel.rotation = _quat;
         
