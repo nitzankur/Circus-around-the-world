@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -881,11 +881,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535868664}
   m_CullTransparentMesh: 1
---- !u!1 &641249023 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1068339749759278953, guid: 0f68302fa326f9548b8fb0e00d54fd18, type: 3}
-  m_PrefabInstance: {fileID: 381508028}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &641249024 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1414549579009830979, guid: 0f68302fa326f9548b8fb0e00d54fd18, type: 3}
@@ -1393,7 +1388,6 @@ GameObject:
   - component: {fileID: 1433744742}
   - component: {fileID: 1433744741}
   - component: {fileID: 1433744744}
-  - component: {fileID: 1433744745}
   m_Layer: 0
   m_Name: Unicycle
   m_TagString: Untagged
@@ -1467,20 +1461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RawImage: {fileID: 25292132}
   m_Texture: {fileID: 2800000, guid: 159ca3d1600454341ba3db58d7fbbb64, type: 3}
---- !u!114 &1433744745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433744740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dbe5a9bb7a21ce4e95e89340ad95a2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Shot: {fileID: 5947909430217753062, guid: 68542ec2a3bb6d94a97fc34e064401a1, type: 3}
-  Seat: {fileID: 641249023}
 --- !u!1001 &1460784192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1807,6 +1787,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1654350466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654350463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f732141286a6841872962234b6c06c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 6317815662514833340, guid: 1708b68ab924e5e468a28b02a0304ff5, type: 3}
+  parentController: {fileID: 1654350462}
 --- !u!1 &1723213402
 GameObject:
   m_ObjectHideFlags: 0
