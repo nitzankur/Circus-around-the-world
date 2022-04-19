@@ -52,7 +52,6 @@ public class PaintManager : Singleton<PaintManager>{
 
 
     public void paint(Paintable paintable, Vector3 pos, float radius = 1f, float hardness = 1f, float strength = 1f, Color? color = null){
-        print("painting");
         RenderTexture mask = paintable.getMask();
         RenderTexture uvIslands = paintable.getUVIslands();
         RenderTexture extend = paintable.getExtend();

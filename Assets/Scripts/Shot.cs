@@ -8,10 +8,8 @@ public class Shot : MonoBehaviour
 {
 
     [SerializeField] private GameObject bullet;
-    [SerializeField] private float speed = 100f;
     [SerializeField] private Transform parentController;
-  [SerializeField] private  Cinemachine.CinemachineImpulseSource  source;
-    public static int shoot_num = 0;
+    private Vector3 _mouseWorldPosition = Vector3.zero;
     private CinemachineImpulseSource impulseSource;
 
     private void Start()
@@ -22,30 +20,25 @@ public class Shot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 angle = parentController.localEulerAngles;
-        bool pressing = Input.GetMouseButton(0);
+        Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f))
+        {
+            _mouseWorldPosition = raycastHit.point;
+        }
         
         if (Input.GetButtonDown("Fire1"))
         {
-            Shooting();
-            shoot_num++;
+            Shooting(_mouseWorldPosition);
         }
-        
-     //   parentController.localEulerAngles = new Vector3(Mathf.LerpAngle(parentController.localEulerAngles.x, pressing ? RemapCamera(flCam.m_YAxis.Value, 0, 1, -25, 25) : 0, .3f), angle.y, angle.z);
-    }
-    
-    public void Shooting()
-    {
-        GameObject instBullet = Instantiate(bullet,transform.position ,Quaternion.identity) as GameObject;
-        Rigidbody instBulletRb = instBullet.GetComponent<Rigidbody>();
-        instBulletRb.AddForce(Vector3.forward*speed);
 
-        source = GetComponent<Cinemachine.CinemachineImpulseSource>();
-        source.GenerateImpulse(Camera.main.transform.forward);
+    }
+
+    public void Shooting(Vector3 mouseWorldPosition)
+    {
+        Vector3 aimDir = (mouseWorldPosition - parentController.position).normalized;
+        Instantiate(bullet, transform.position, Quaternion.LookRotation(aimDir,Vector3.up));
+
     }
     
-    float RemapCamera(float value, float from1, float to1, float from2, float to2)
-    {
-        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
-    }
 }
