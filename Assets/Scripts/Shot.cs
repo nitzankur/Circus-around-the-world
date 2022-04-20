@@ -37,6 +37,7 @@ public class Shot : MonoBehaviour
     public void Shooting(Vector3 mouseWorldPosition)
     {
         Vector3 aimDir = (mouseWorldPosition - parentController.position).normalized;
+        Vector3 aimDir2 = (parentController.transform.eulerAngles).normalized;
         Instantiate(bullet, transform.position, Quaternion.LookRotation(aimDir,Vector3.up));
         if (GameManager.state == GameManager.Antarctica) GameManager.antarcticaShotCounter++;
         else if (GameManager.state == GameManager.Desert) GameManager.desertShotCounter++;

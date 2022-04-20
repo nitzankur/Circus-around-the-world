@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.PlayerLoop;
 
 public class UnicycleController : MonoBehaviour
@@ -11,39 +13,42 @@ public class UnicycleController : MonoBehaviour
     [SerializeField] private WheelCollider wheelCollider;
     [SerializeField] private Transform wheel;
     [SerializeField] private Transform seat;
-    [SerializeField] private Transform gun;
-    [SerializeField] private float maxMotor = 10;
-    [SerializeField] private float maxAngle = 5;
-    [SerializeField] private float brakes = 5;
-    [SerializeField] private float _speed = 7;
-    
+    [SerializeField] private Transform body;
+    [SerializeField] private Transform lookAt;
+    [SerializeField] private float speed = 10;
+    [SerializeField] private float brakes = 1000;
+    [SerializeField] private float turnSpeed = 0.3f;
+    [SerializeField] private float ySensitivity;
+
+    [SerializeField] private Cinemachine.AxisState xAxis;
+    [SerializeField] private Cinemachine.AxisState yAxis;
+
     #endregion
 
     #region Fields
 
-    private float lastAngle = 0;
+    private float vert;
+    private float steeringAngle;
 
-    private float _vert, _horz;
-    private float _steeringAngle;
-    private float direction;
-
-    private bool started = false;
-    
-    private float _mouseX;
-    private float _mouseY;
-
-    private float rotateX, rotateY;
+    private new Rigidbody rigidbody;
 
     #endregion
 
     #region MonoBehaviour
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        rigidbody = GetComponent<Rigidbody>();
+    }
+
     private void FixedUpdate()
     {
         GetInput();
+        Look();
         Steer();
         Accelerate();
-        UpdateWheelPosition();
+        UpdatePosition();
     }
 
     #endregion
@@ -51,7 +56,12 @@ public class UnicycleController : MonoBehaviour
 
     #region Methods
 
-    private void UpdateWheelPosition()
+    private void Look()
+    {
+        lookAt.eulerAngles = new Vector3(yAxis.Value, xAxis.Value, 0);
+    }
+
+    private void UpdatePosition()
     {
         Vector3 _pos = wheel.position;
         Quaternion _quat = wheel.rotation;
@@ -65,58 +75,45 @@ public class UnicycleController : MonoBehaviour
         
         wheel.position = _pos;
         wheel.rotation = _quat;
-        
-        if (rotateX != 0)
-        {
-            Vector3 seatRotation = seat.transform.localEulerAngles;
-            seatRotation.y += rotateX;
-            seat.transform.localEulerAngles = seatRotation;
-        }
 
-        if (rotateY != 0)
-        {
-            Vector3 gunRotation = gun.transform.localEulerAngles;
-            gunRotation.x -= rotateY;
-            gun.transform.localEulerAngles = gunRotation;
-        }
+        seat.transform.rotation = Quaternion.Slerp(seat.transform.rotation, Quaternion.Euler(0, xAxis.Value, 0), turnSpeed);
+
+        body.transform.rotation = Quaternion.Slerp(body.transform.rotation, quaternion.Euler(yAxis.Value * ySensitivity,0,0), turnSpeed);
+        Vector3 bodyRotation = body.transform.eulerAngles;
+        bodyRotation.y = seat.transform.eulerAngles.y;
+        body.transform.eulerAngles = bodyRotation;
+
     }
 
     private void Accelerate()
     {
         if (wheelCollider.brakeTorque != 0)
         {
+            rigidbody.velocity = Vector3.zero;
             return;
         }
-        wheelCollider.motorTorque = _vert * maxMotor;
+        wheelCollider.motorTorque = vert * speed;
     }
 
     private void Steer()
     {
-        // _steeringAngle = maxAngle * _horz;
-        if(_mouseX != 0)
-            _steeringAngle += rotateX;
-        wheelCollider.steerAngle = _steeringAngle;
+        steeringAngle = xAxis.Value;
+        wheelCollider.steerAngle = steeringAngle;
     }
-    
-    
 
     private void GetInput()
     {
-        float currVert = Input.GetAxis("Vertical") * maxMotor;
-        float currHorz = Input.GetAxis("Horizontal") * maxAngle;
+        float currVert = Input.GetAxis("Vertical") * speed;
 
-        _mouseX = Input.GetAxis("Mouse X");
-        _mouseY = Input.GetAxis("Mouse Y");
-
-        if (_vert == currVert && Math.Abs(currVert) < 1 || _vert * currVert < 0)
+        if (vert == currVert && Math.Abs(currVert) < 1 || vert * currVert < 0) 
             wheelCollider.brakeTorque = brakes;
         else
             wheelCollider.brakeTorque = 0;
 
-        _vert = currVert;
-        _horz = currHorz;
-        rotateX = _mouseX * _speed * Time.deltaTime;
-        rotateY = _mouseY * _speed * Time.deltaTime;
+        vert = currVert;
+
+        xAxis.Update(Time.fixedDeltaTime);
+        yAxis.Update(Time.fixedDeltaTime);
     }
 
     #endregion

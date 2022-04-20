@@ -22,7 +22,7 @@ public class TakeAnimal : MonoBehaviour
     {
         ChangeTexture();
         PaintWorld();
-        print(GameManager.state+" state");
+        // print(GameManager.state+" state");
     }
     //change the boolean vareibal 
     private void OnTriggerStay(Collider other)
