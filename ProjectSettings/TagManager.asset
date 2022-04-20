@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Animal
+  - Savanna
+  - Antarctica
+  - Desert
+  - Jungle
+  - SavannaCounter1
+  - SavannaCounter2
+  - SavannaCounter3
+  - SavannaCounter4
   layers:
   - Default
   - TransparentFX

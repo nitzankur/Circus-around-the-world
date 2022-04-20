@@ -38,6 +38,10 @@ public class Shot : MonoBehaviour
     {
         Vector3 aimDir = (mouseWorldPosition - parentController.position).normalized;
         Instantiate(bullet, transform.position, Quaternion.LookRotation(aimDir,Vector3.up));
+        if (GameManager.state == GameManager.Antarctica) GameManager.antarcticaShotCounter++;
+        else if (GameManager.state == GameManager.Desert) GameManager.desertShotCounter++;
+        else if (GameManager.state == GameManager.Savanna) GameManager.savannaShotCounter++;
+        else if (GameManager.state == GameManager.Jungle ) GameManager.jungleShotCounter++;
 
     }
     
