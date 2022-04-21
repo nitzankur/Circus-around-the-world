@@ -97,6 +97,12 @@ public class UnicycleController : MonoBehaviour
 
     private void GetInput()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            print("reset");
+            wheelCollider.steerAngle = wheel.eulerAngles.y;
+        }
+        
         xAxis.Update(Time.fixedDeltaTime);
         yAxis.Update(Time.fixedDeltaTime);
         
