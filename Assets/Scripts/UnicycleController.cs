@@ -66,10 +66,11 @@ public class UnicycleController : MonoBehaviour
         // euler.y = wheel.eulerAngles.y;
         //
         // _quat.eulerAngles = euler;
-        
+
         wheel.position = _pos;
         wheel.rotation = _quat;
-        
+
+        // float followY = Math.Abs(wheel.eulerAngles.y - followRotation.eulerAngles.y) > 120 ? xAxis.Value : wheel.eulerAngles.y - horizInput; 
         followRotation.transform.rotation = Quaternion.Slerp(followRotation.transform.rotation, Quaternion.Euler(0, xAxis.Value, 0), turnSpeed);
         seat.transform.eulerAngles = followRotation.transform.eulerAngles + new Vector3(0, horizInput, 0);
         
