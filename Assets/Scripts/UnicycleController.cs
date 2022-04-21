@@ -14,7 +14,6 @@ public class UnicycleController : MonoBehaviour
     [SerializeField] private Transform wheel;
     [SerializeField] private Transform seat;
     [SerializeField] private Transform body;
-    [SerializeField] private Transform lookAt;
     [SerializeField] private float speed = 10;
     [SerializeField] private float brakes = 1000;
     [SerializeField] private float turnSpeed = 0.3f;
@@ -45,7 +44,6 @@ public class UnicycleController : MonoBehaviour
     private void FixedUpdate()
     {
         GetInput();
-        Look();
         Steer();
         Accelerate();
         UpdatePosition();
@@ -55,11 +53,6 @@ public class UnicycleController : MonoBehaviour
 
 
     #region Methods
-
-    private void Look()
-    {
-        lookAt.eulerAngles = new Vector3(yAxis.Value, xAxis.Value, 0);
-    }
 
     private void UpdatePosition()
     {

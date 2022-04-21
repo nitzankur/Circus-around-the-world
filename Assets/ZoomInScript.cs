@@ -4,20 +4,20 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-public class Aimming : MonoBehaviour
+public class ZoomInScript : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera vCamera;
+    
+    private Animator animator;
+    private static readonly int Zoom = Animator.StringToHash("Zoom");
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-    }
-    
-    void Update()
-    {
-        
+        animator = vCamera.GetComponent<Animator>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetButtonDown("Fire2"))
             ZoomIn();
@@ -27,10 +27,13 @@ public class Aimming : MonoBehaviour
     
     private void ZoomIn()
     {
-         
+        print("in");
+        animator.SetBool(Zoom, true);    
     }
 
     private void ZoomOut()
     {
+        print("out");
+        animator.SetBool(Zoom, false);
     }
 }

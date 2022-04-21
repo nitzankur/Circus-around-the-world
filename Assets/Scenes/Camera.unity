@@ -708,6 +708,7 @@ GameObject:
   - component: {fileID: 494465964}
   - component: {fileID: 494465963}
   - component: {fileID: 494465965}
+  - component: {fileID: 494465966}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -780,6 +781,25 @@ MonoBehaviour:
   m_ChannelMask: 1
   m_Gain: 1
   m_Use2DDistance: 0
+--- !u!95 &494465966
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494465962}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3ef7db49c3f55b240b0cf3189dc97acb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &519039893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,7 +1480,6 @@ GameObject:
   - component: {fileID: 1433744742}
   - component: {fileID: 1433744741}
   - component: {fileID: 1433744744}
-  - component: {fileID: 1433744745}
   m_Layer: 0
   m_Name: Unicycle
   m_TagString: Untagged
@@ -1488,7 +1507,7 @@ MonoBehaviour:
   speed: 7
   brakes: 1000
   turnSpeed: 0.5
-  ySensitivity: 0.05
+  ySensitivity: 0.02
   xAxis:
     Value: 0
     m_SpeedMode: 0
@@ -1516,8 +1535,8 @@ MonoBehaviour:
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
-    m_MinValue: -15
-    m_MaxValue: 15
+    m_MinValue: -30
+    m_MaxValue: 30
     m_Wrap: 0
     m_Recentering:
       m_enabled: 0
@@ -1579,18 +1598,6 @@ MonoBehaviour:
   ElephentTexture: {fileID: 0}
   shotLimit: 0
   areaLimit: 0
---- !u!114 &1433744745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433744740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0085f139fd0f9b64ca267a1a23f60d4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1460784192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1746,6 +1753,7 @@ GameObject:
   - component: {fileID: 1630282505}
   - component: {fileID: 1630282507}
   - component: {fileID: 1630282506}
+  - component: {fileID: 1630282508}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1813,6 +1821,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1630282508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630282504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0085f139fd0f9b64ca267a1a23f60d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vCamera: {fileID: 494465963}
 --- !u!1001 &1654350461
 PrefabInstance:
   m_ObjectHideFlags: 0
