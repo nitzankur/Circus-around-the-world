@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody rb;
     [SerializeField] private float speed;
+    private int _counter = 0;
 
     private void Awake()
     {
@@ -18,9 +19,18 @@ public class Bullet : MonoBehaviour
     {
         rb.velocity = transform.forward * speed;
     }
-    
-    private void OnCollisionExit(Collision other)
+
+    private void Update()
     {
-        Destroy(gameObject);
+        if (_counter == 3)
+        {
+            Destroy(gameObject);
+        }
+        
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        _counter++;
     }
 }

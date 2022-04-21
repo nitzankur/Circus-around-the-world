@@ -31,7 +31,6 @@ public class Shot : MonoBehaviour
         {
             Shooting(_mouseWorldPosition);
         }
-
     }
 
     public void Shooting(Vector3 mouseWorldPosition)
