@@ -8,42 +8,51 @@ public class Shot : MonoBehaviour
 {
 
     [SerializeField] private GameObject bullet;
-    [SerializeField] private Transform parentController;
-    private Vector3 _mouseWorldPosition = Vector3.zero;
     private CinemachineImpulseSource impulseSource;
+    private float curTime;
 
-    private void Start()
-    {
-        // impulseSource =  flCam.GetComponent<CinemachineImpulseSource>();
-    }
+    [SerializeField]
+    private float shotDiff = 0.3f;
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f))
-        {
-            _mouseWorldPosition = raycastHit.point;
-        }
-        
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Shooting(_mouseWorldPosition);
-        }
 
+        //short click
+         if (Input.GetButtonDown("Fire1"))
+         {
+             curTime = Time.time;
+             ShortSooting();
+         }
+
+         if (Input.GetButton("Fire1"))
+         {
+             if ((Time.time - curTime) > 0.2f)
+             {
+                 while (Time.time - curTime > shotDiff)
+                 {
+                     ShortSooting();
+                     curTime = Time.time + 0.2f;
+                     break;
+                 }
+             }
+         }
     }
 
-    public void Shooting(Vector3 mouseWorldPosition)
+    private void ShotWaiter()
     {
-        Vector3 aimDir = (mouseWorldPosition - parentController.position).normalized;
-        Vector3 aimDir2 = (parentController.transform.eulerAngles).normalized;
-        Instantiate(bullet, transform.position, Quaternion.LookRotation(aimDir,Vector3.up));
+   ;
+    }
+
+    private void ShortSooting()
+    {
+        Instantiate(bullet, transform.position, transform.parent.rotation);
         if (GameManager.state == GameManager.Antarctica) GameManager.antarcticaShotCounter++;
         else if (GameManager.state == GameManager.Desert) GameManager.desertShotCounter++;
         else if (GameManager.state == GameManager.Savanna) GameManager.savannaShotCounter++;
         else if (GameManager.state == GameManager.Jungle ) GameManager.jungleShotCounter++;
-
     }
+    
+    
     
 }
