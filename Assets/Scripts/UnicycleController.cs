@@ -14,6 +14,7 @@ public class UnicycleController : MonoBehaviour
     [SerializeField] private Transform wheel;
     [SerializeField] private Transform seat;
     [SerializeField] private Transform body;
+    [SerializeField] private Transform followRotation;
     [SerializeField] private float speed = 10;
     [SerializeField] private float brakes = 1000;
     [SerializeField] private float turnSpeed = 0.3f;
@@ -26,7 +27,7 @@ public class UnicycleController : MonoBehaviour
 
     #region Fields
 
-    private float vert;
+    private float vertInput, horizInput;
     private float steeringAngle;
 
     private new Rigidbody rigidbody;
@@ -68,45 +69,46 @@ public class UnicycleController : MonoBehaviour
         
         wheel.position = _pos;
         wheel.rotation = _quat;
-
-        seat.transform.rotation = Quaternion.Slerp(seat.transform.rotation, Quaternion.Euler(0, xAxis.Value, 0), turnSpeed);
-
+        
+        followRotation.transform.rotation = Quaternion.Slerp(followRotation.transform.rotation, Quaternion.Euler(0, xAxis.Value, 0), turnSpeed);
+        seat.transform.eulerAngles = followRotation.transform.eulerAngles + new Vector3(0, horizInput, 0);
+        
         body.transform.rotation = Quaternion.Slerp(body.transform.rotation, quaternion.Euler(yAxis.Value * ySensitivity,0,0), turnSpeed);
         Vector3 bodyRotation = body.transform.eulerAngles;
-        bodyRotation.y = seat.transform.eulerAngles.y;
+        bodyRotation.y = followRotation.eulerAngles.y;
         body.transform.eulerAngles = bodyRotation;
-
     }
 
     private void Accelerate()
     {
         if (wheelCollider.brakeTorque != 0)
         {
-            rigidbody.velocity = Vector3.zero;
+            rigidbody.velocity = new Vector3(0,rigidbody.velocity.y,0);
             return;
         }
-        wheelCollider.motorTorque = vert * speed;
+        wheelCollider.motorTorque = vertInput * speed;
     }
 
     private void Steer()
     {
-        steeringAngle = xAxis.Value;
+        steeringAngle = xAxis.Value + horizInput;
         wheelCollider.steerAngle = steeringAngle;
     }
 
     private void GetInput()
     {
+        xAxis.Update(Time.fixedDeltaTime);
+        yAxis.Update(Time.fixedDeltaTime);
+        
         float currVert = Input.GetAxis("Vertical") * speed;
+        horizInput = Input.GetAxis("Horizontal") * 90;
 
-        if (vert == currVert && Math.Abs(currVert) < 1 || vert * currVert < 0) 
+        if (vertInput == currVert && Math.Abs(currVert) < 1 || vertInput * currVert < 0) 
             wheelCollider.brakeTorque = brakes;
         else
             wheelCollider.brakeTorque = 0;
 
-        vert = currVert;
-
-        xAxis.Update(Time.fixedDeltaTime);
-        yAxis.Update(Time.fixedDeltaTime);
+        vertInput = currVert;
     }
 
     #endregion
