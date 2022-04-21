@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -994,7 +994,7 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.9
   m_SuspensionSpring:
-    spring: 35000
+    spring: 1500
     damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0
@@ -1002,14 +1002,14 @@ WheelCollider:
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 1
+    m_ExtremumSlip: 0.1
+    m_ExtremumValue: 0.5
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
+    m_ExtremumSlip: 0.1
+    m_ExtremumValue: 0.5
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
@@ -1510,7 +1510,6 @@ GameObject:
   - component: {fileID: 1433744742}
   - component: {fileID: 1433744741}
   - component: {fileID: 1433744744}
-  - component: {fileID: 1433744745}
   - component: {fileID: 1433744746}
   m_Layer: 0
   m_Name: Unicycle
@@ -1631,19 +1630,6 @@ MonoBehaviour:
   ElephentTexture: {fileID: 2800000, guid: 159ca3d1600454341ba3db58d7fbbb64, type: 3}
   shotLimit: 1
   areaLimit: 1
---- !u!114 &1433744745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433744740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0085f139fd0f9b64ca267a1a23f60d4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vCamera: {fileID: 0}
 --- !u!65 &1433744746
 BoxCollider:
   m_ObjectHideFlags: 0
