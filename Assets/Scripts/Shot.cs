@@ -47,10 +47,10 @@ public class Shot : MonoBehaviour
     private void ShortSooting()
     {
         Instantiate(bullet, transform.position, transform.parent.rotation);
-        if (GameManager.state == GameManager.Antarctica) GameManager.antarcticaShotCounter++;
-        else if (GameManager.state == GameManager.Desert) GameManager.desertShotCounter++;
-        else if (GameManager.state == GameManager.Savanna) GameManager.savannaShotCounter++;
-        else if (GameManager.state == GameManager.Jungle ) GameManager.jungleShotCounter++;
+        if (GameManager.State == GameManager.Antarctica) GameManager.AntarcticaShotCounter++;
+        else if (GameManager.State == GameManager.Desert) GameManager.DesertShotCounter++;
+        else if (GameManager.State == GameManager.Savanna) GameManager.SavannaShotCounter++;
+        else if (GameManager.State == GameManager.Jungle ) GameManager.JungleShotCounter++;
     }
     
     
