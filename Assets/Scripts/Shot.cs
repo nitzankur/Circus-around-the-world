@@ -39,11 +39,6 @@ public class Shot : MonoBehaviour
          }
     }
 
-    private void ShotWaiter()
-    {
-   ;
-    }
-
     private void ShortSooting()
     {
         Instantiate(bullet, transform.position, transform.parent.rotation);
