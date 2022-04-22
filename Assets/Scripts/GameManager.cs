@@ -7,38 +7,45 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    struct World
+    {
+        public String name;
+        public int shotCounter;
+        public int areaCounter;
+        public bool painted;
+    }
+
     [SerializeField] private int shotLimit,areaLimit;
+    
     private string state;
-    private int antarcticaShotCounter,desertShotCounter,savannaShotCounter,jungleShotCounter;
-    private int antarcticaAreaCounter,desertAreaCounter,savannaAreaCounter,jungleAreaCounter;
+    private World savanna, antarctica, jungle, desert;
     public const string Savanna = "Savanna";
     public const string Antarctica = "Antarctica";
     public const string Desert = "Desert";
     public const string Jungle = "Jungle";
-    private bool antarcticaPaint, savannaPaint,desertPaint,junglePaint;
 
     public static bool AntarcticaPaint
     {
-        get => _shared.antarcticaPaint;
-        set => _shared.antarcticaPaint = value;
+        get => _shared.antarctica.painted;
+        set => _shared.antarctica.painted = value;
     }
 
     public static bool SavannaPaint
     {
-        get => _shared.savannaPaint;
-        set => _shared.savannaPaint = value;
+        get => _shared.savanna.painted;
+        set => _shared.savanna.painted = value;
     }
 
     public static bool DesertPaint
     {
-        get => _shared.desertPaint;
-        set => _shared.desertPaint = value;
+        get => _shared.desert.painted;
+        set => _shared.desert.painted = value;
     }
 
     public static bool JunglePaint
     {
-        get => _shared.junglePaint;
-        set => _shared.junglePaint = value;
+        get => _shared.jungle.painted;
+        set => _shared.jungle.painted = value;
     }
 
     private static GameManager _shared;
@@ -48,22 +55,6 @@ public class GameManager : MonoBehaviour
         if (_shared == null)
         {
             _shared = this;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        switch(State)
-        {
-            case Savanna:
-                break;
-            case Antarctica:
-                break;
-            case Desert:
-                break;
-            case Jungle:
-                break;
         }
     }
 
@@ -93,90 +84,90 @@ public class GameManager : MonoBehaviour
 
     public static int SavannaAreaCounter
     {
-        get => _shared.savannaAreaCounter;
+        get => _shared.savanna.areaCounter;
         set
         {
-            _shared.savannaAreaCounter = value;
-            _shared.savannaPaint = _shared.savannaAreaCounter >= _shared.areaLimit &&
-                                   _shared.savannaShotCounter >= _shared.shotLimit;
+            _shared.savanna.areaCounter = value;
+            _shared.savanna.painted = _shared.savanna.areaCounter >= _shared.areaLimit &&
+                                   _shared.savanna.shotCounter >= _shared.shotLimit;
 
         }
     }
     public static int DesertAreaCounter
     {
-        get => _shared.desertAreaCounter;
+        get => _shared.desert.areaCounter;
         set
         {
-            _shared.desertAreaCounter = value;
-            _shared.desertPaint = _shared.desertAreaCounter >= _shared.areaLimit &&
-                                   _shared.desertShotCounter >= _shared.shotLimit;
+            _shared.desert.areaCounter = value;
+            _shared.desert.painted = _shared.desert.areaCounter >= _shared.areaLimit &&
+                                   _shared.desert.shotCounter >= _shared.shotLimit;
 
         }
     }
     public static int JungleAreaCounter
     {
-        get => _shared.jungleAreaCounter;
+        get => _shared.jungle.areaCounter;
         set
         {
-            _shared.jungleAreaCounter = value;
-            _shared.junglePaint = _shared.jungleAreaCounter >= _shared.areaLimit &&
-                                   _shared.jungleShotCounter >= _shared.shotLimit;
+            _shared.jungle.areaCounter = value;
+            _shared.jungle.painted = _shared.jungle.areaCounter >= _shared.areaLimit &&
+                                   _shared.jungle.shotCounter >= _shared.shotLimit;
 
         }
     }
     public static int AntarcticaAreaCounter
     {
-        get => _shared.antarcticaAreaCounter;
+        get => _shared.antarctica.areaCounter;
         set
         {
-            _shared.antarcticaAreaCounter++;
-            _shared.antarcticaPaint = _shared.antarcticaAreaCounter >= _shared.areaLimit &&
-                                   _shared.antarcticaShotCounter >= _shared.shotLimit;
+            _shared.antarctica.areaCounter = value;
+            _shared.antarctica.painted = _shared.antarctica.areaCounter >= _shared.areaLimit &&
+                                   _shared.antarctica.shotCounter >= _shared.shotLimit;
 
         }
     }
     
     public static int SavannaShotCounter
     {
-        get => _shared.savannaShotCounter;
+        get => _shared.savanna.shotCounter;
         set
         {
-            _shared.savannaShotCounter = value;
-            _shared.savannaPaint = _shared.savannaAreaCounter >= _shared.areaLimit &&
-                                   _shared.savannaShotCounter >= _shared.shotLimit;
+            _shared.savanna.shotCounter = value;
+            _shared.savanna.painted = _shared.savanna.areaCounter >= _shared.areaLimit &&
+                                   _shared.savanna.shotCounter >= _shared.shotLimit;
 
         }
     }
     public static int DesertShotCounter
     {
-        get => _shared.desertShotCounter;
+        get => _shared.desert.shotCounter;
         set
         {
-            _shared.desertShotCounter = value;
-            _shared.desertPaint = _shared.desertAreaCounter >= _shared.areaLimit &&
-                                  _shared.desertShotCounter >= _shared.shotLimit;
+            _shared.desert.shotCounter = value;
+            _shared.desert.painted = _shared.desert.areaCounter >= _shared.areaLimit &&
+                                  _shared.desert.shotCounter >= _shared.shotLimit;
 
         }
     }
     public static int JungleShotCounter
     {
-        get => _shared.jungleShotCounter;
+        get => _shared.jungle.shotCounter;
         set
         {
-            _shared.jungleShotCounter = value;
-            _shared.junglePaint = _shared.jungleAreaCounter >= _shared.areaLimit &&
-                                  _shared.jungleShotCounter >= _shared.shotLimit;
+            _shared.jungle.shotCounter = value;
+            _shared.jungle.painted = _shared.jungle.areaCounter >= _shared.areaLimit &&
+                                  _shared.jungle.shotCounter >= _shared.shotLimit;
 
         }
     }
     public static int AntarcticaShotCounter
     {
-        get => _shared.antarcticaShotCounter;
+        get => _shared.antarctica.shotCounter;
         set
         {
-            _shared.antarcticaShotCounter++;
-            _shared.antarcticaPaint = _shared.antarcticaAreaCounter >= _shared.areaLimit &&
-                                      _shared.antarcticaShotCounter >= _shared.shotLimit;
+            _shared.antarctica.shotCounter = value;
+            _shared.antarctica.painted = _shared.antarctica.areaCounter >= _shared.areaLimit &&
+                                      _shared.antarctica.shotCounter >= _shared.shotLimit;
 
         }
     }
