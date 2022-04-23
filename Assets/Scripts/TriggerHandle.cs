@@ -8,6 +8,9 @@ public class TriggerHandle : MonoBehaviour
 {
     private void OnTriggerStay(Collider other)
     {
+        if (TutorialManager.State < TutorialManager.INTERACT)
+            return;
+        
         if (other.CompareTag("Animal") && Input.GetKeyDown(KeyCode.Space))
         {
             print("Animal");
@@ -21,24 +24,36 @@ public class TriggerHandle : MonoBehaviour
                         GameManager.State == GameManager.Savanna && GameManager.SavannaPaint ||
                         GameManager.State == GameManager.Jungle && GameManager.JunglePaint) UIManager.ChangeTexture(GameManager.State);
                 else disappear = false;
+                
                 if(disappear) childTrans.gameObject.SetActive(false);
             }
         }
+
+        if (other.CompareTag("Gate"))
+        {
+            print("gate");
+            if(Input.GetKeyDown(KeyCode.Space))
+                TutorialManager.StartGame();
+        }
+        
+        
     }
     //change the state of the world
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Respawn"))
         {
-            print("entered respawn");
             GameManager.ClosestRespawn = other.gameObject;
         }
         
-        if (other.CompareTag(GameManager.Savanna)) GameManager.State = GameManager.Savanna;
-        if (other.CompareTag(GameManager.Antarctica)) GameManager.State = GameManager.Antarctica;
-        if (other.CompareTag(GameManager.Desert)) GameManager.State = GameManager.Desert;
-        if (other.CompareTag(GameManager.Jungle)) GameManager.State = GameManager.Jungle;
-        AreasCounter(other);
+        if (other.CompareTag(GameManager.Savanna)
+            || other.CompareTag(GameManager.Antarctica)
+            || other.CompareTag(GameManager.Desert) 
+            || other.CompareTag(GameManager.Jungle))
+        {
+            GameManager.State = other.tag;
+            AreasCounter(other);
+        }
     }
 
     private void AreasCounter(Collider other)

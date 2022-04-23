@@ -30,7 +30,7 @@ namespace DefaultNamespace
 
         public bool Painted => painted;
 
-        public float Progress => progress;
+        public float Progress => (progress < 100) ? progress : 100;
         
         public int ShotCounter
         {

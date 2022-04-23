@@ -31,22 +31,29 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(TutorialManager.State != TutorialManager.IN_GAME && Input.GetKeyDown(KeyCode.Return))
+            TutorialManager.StartGame();
+        
+        if(TutorialManager.State < TutorialManager.RESPAWN)
+            return;
+        
         if (Input.GetMouseButtonDown(2))
         {
-            print("respawn");
             Respawn();
         }
     }
 
     private void Respawn()
     {
+        if (TutorialManager.State == TutorialManager.RESPAWN)
+            TutorialManager.State++;
+        
         Vector3 position = (closestRespawn == null)
             ? middleRespawn.transform.position
             : closestRespawn.transform.position;
         
         Player player = Instantiate(playerPrefab, position, Quaternion.identity);
-        // player.seat.rotation = playerInstance.seat.rotation;
-        
+
         vCamera.Follow = player.spine;
         vCamera.LookAt = player.lookAt;
         player.GetComponent<ZoomInScript>().vCamera = vCamera;
