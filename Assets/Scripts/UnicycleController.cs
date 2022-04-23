@@ -44,6 +44,8 @@ public class UnicycleController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (wheelCollider == null)
+            return;
         GetInput();
         Steer();
         Accelerate();
@@ -64,12 +66,11 @@ public class UnicycleController : MonoBehaviour
 
         // Vector3 euler = _quat.eulerAngles;
         // euler.y = wheel.eulerAngles.y;
-        //
         // _quat.eulerAngles = euler;
         
         wheel.position = _pos;
         wheel.rotation = _quat;
-        
+
         followRotation.transform.rotation = Quaternion.Slerp(followRotation.transform.rotation, Quaternion.Euler(0, xAxis.Value, 0), turnSpeed);
         seat.transform.eulerAngles = followRotation.transform.eulerAngles + new Vector3(0, horizInput, 0);
         
@@ -97,12 +98,12 @@ public class UnicycleController : MonoBehaviour
 
     private void GetInput()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (rigidbody.isKinematic)
         {
-            print("reset");
-            wheelCollider.steerAngle = wheel.eulerAngles.y;
+            rigidbody.isKinematic = false;
+            wheelCollider.brakeTorque = 0;
         }
-        
+
         xAxis.Update(Time.fixedDeltaTime);
         yAxis.Update(Time.fixedDeltaTime);
         

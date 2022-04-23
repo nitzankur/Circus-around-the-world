@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ZoomInScript : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera vCamera;
+    public CinemachineVirtualCamera vCamera;
     
     private Animator animator;
     private static readonly int Zoom = Animator.StringToHash("Zoom");
