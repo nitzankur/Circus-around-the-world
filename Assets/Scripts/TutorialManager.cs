@@ -44,11 +44,10 @@ public class TutorialManager : MonoBehaviour
         if (_shared == null)
         {
             _shared = this;
-            State = LOOK;
             // StartCoroutine(_shared.LoadScene());
         }
     }
-    
+ 
     private void Update()
     {
         if (wait > 0)
