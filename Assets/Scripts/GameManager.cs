@@ -2,18 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using DefaultNamespace;
 using UnityEditor.AnimatedValues;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    struct World
-    {
-        public String name;
-        public int shotCounter;
-        public int areaCounter;
-        public bool painted;
-    }
 
     [SerializeField] private int shotLimit,areaLimit;
     
@@ -23,32 +17,23 @@ public class GameManager : MonoBehaviour
     public const string Antarctica = "Antarctica";
     public const string Desert = "Desert";
     public const string Jungle = "Jungle";
-
-    public static bool AntarcticaPaint
-    {
-        get => _shared.antarctica.painted;
-        set => _shared.antarctica.painted = value;
-    }
-
-    public static bool SavannaPaint
-    {
-        get => _shared.savanna.painted;
-        set => _shared.savanna.painted = value;
-    }
-
-    public static bool DesertPaint
-    {
-        get => _shared.desert.painted;
-        set => _shared.desert.painted = value;
-    }
-
-    public static bool JunglePaint
-    {
-        get => _shared.jungle.painted;
-        set => _shared.jungle.painted = value;
-    }
-
     private static GameManager _shared;
+
+    private void Start()
+    {
+        savanna = new World(Savanna, _shared.shotLimit, _shared.areaLimit);
+        antarctica = new World(Antarctica, _shared.shotLimit, _shared.areaLimit);
+        desert = new World(Desert, _shared.shotLimit, _shared.areaLimit);
+        jungle = new World(Jungle, _shared.shotLimit, _shared.areaLimit);
+    }
+
+    public static bool AntarcticaPaint => _shared.antarctica.Painted;
+
+    public static bool SavannaPaint => _shared.savanna.Painted;
+
+    public static bool DesertPaint => _shared.desert.Painted;
+
+    public static bool JunglePaint => _shared.jungle.Painted;
 
     private void Awake()
     {
@@ -71,105 +56,75 @@ public class GameManager : MonoBehaviour
         return tag.Equals(Antarctica) || tag.Equals(Savanna) || tag.Equals(Desert) || tag.Equals(Jungle);
     }
 
-    public static void SetState(String tag)
-    {
-        State = Savanna;
-    }
-
     public static String State
     {
         get => _shared.state;
-        set => _shared.state = value;
+        set {_shared.state = value; UIManager.UpdateProgress();}
     }
 
     public static int SavannaAreaCounter
     {
-        get => _shared.savanna.areaCounter;
-        set
-        {
-            _shared.savanna.areaCounter = value;
-            _shared.savanna.painted = _shared.savanna.areaCounter >= _shared.areaLimit &&
-                                   _shared.savanna.shotCounter >= _shared.shotLimit;
-
-        }
+        get => _shared.savanna.AreaCounter;
+        set {_shared.savanna.AreaCounter = value; UIManager.UpdateProgress();}
     }
+
     public static int DesertAreaCounter
     {
-        get => _shared.desert.areaCounter;
-        set
-        {
-            _shared.desert.areaCounter = value;
-            _shared.desert.painted = _shared.desert.areaCounter >= _shared.areaLimit &&
-                                   _shared.desert.shotCounter >= _shared.shotLimit;
-
-        }
+        get => _shared.desert.AreaCounter;
+        set { _shared.desert.AreaCounter = value; UIManager.UpdateProgress();}
     }
+
     public static int JungleAreaCounter
     {
-        get => _shared.jungle.areaCounter;
-        set
-        {
-            _shared.jungle.areaCounter = value;
-            _shared.jungle.painted = _shared.jungle.areaCounter >= _shared.areaLimit &&
-                                   _shared.jungle.shotCounter >= _shared.shotLimit;
-
-        }
+        get => _shared.jungle.AreaCounter;
+        set { _shared.jungle.AreaCounter = value; UIManager.UpdateProgress();}
     }
+
     public static int AntarcticaAreaCounter
     {
-        get => _shared.antarctica.areaCounter;
-        set
-        {
-            _shared.antarctica.areaCounter = value;
-            _shared.antarctica.painted = _shared.antarctica.areaCounter >= _shared.areaLimit &&
-                                   _shared.antarctica.shotCounter >= _shared.shotLimit;
-
-        }
+        get => _shared.antarctica.AreaCounter;
+        set { _shared.antarctica.AreaCounter = value; UIManager.UpdateProgress();}
     }
-    
+
     public static int SavannaShotCounter
     {
-        get => _shared.savanna.shotCounter;
-        set
-        {
-            _shared.savanna.shotCounter = value;
-            _shared.savanna.painted = _shared.savanna.areaCounter >= _shared.areaLimit &&
-                                   _shared.savanna.shotCounter >= _shared.shotLimit;
-
-        }
+        get => _shared.savanna.ShotCounter;
+        set { _shared.savanna.ShotCounter = value; UIManager.UpdateProgress();}
     }
+
     public static int DesertShotCounter
     {
-        get => _shared.desert.shotCounter;
-        set
-        {
-            _shared.desert.shotCounter = value;
-            _shared.desert.painted = _shared.desert.areaCounter >= _shared.areaLimit &&
-                                  _shared.desert.shotCounter >= _shared.shotLimit;
-
-        }
+        get => _shared.desert.ShotCounter;
+        set { _shared.desert.ShotCounter = value; UIManager.UpdateProgress();}
     }
+
     public static int JungleShotCounter
     {
-        get => _shared.jungle.shotCounter;
-        set
-        {
-            _shared.jungle.shotCounter = value;
-            _shared.jungle.painted = _shared.jungle.areaCounter >= _shared.areaLimit &&
-                                  _shared.jungle.shotCounter >= _shared.shotLimit;
-
-        }
+        get => _shared.jungle.ShotCounter;
+        set { _shared.jungle.ShotCounter = value; UIManager.UpdateProgress();}
     }
+
     public static int AntarcticaShotCounter
     {
-        get => _shared.antarctica.shotCounter;
-        set
-        {
-            _shared.antarctica.shotCounter = value;
-            _shared.antarctica.painted = _shared.antarctica.areaCounter >= _shared.areaLimit &&
-                                      _shared.antarctica.shotCounter >= _shared.shotLimit;
+        get => _shared.antarctica.ShotCounter;
+        set { _shared.antarctica.ShotCounter = value; UIManager.UpdateProgress();}
+    }
 
+    public static World CurrWorld()
+    {
+        switch (State)
+        {
+            case Antarctica:
+                return _shared.antarctica;
+            case Desert:
+                return _shared.desert;
+            case Jungle:
+                return _shared.jungle;
+            case Savanna:
+                return _shared.savanna;
         }
+
+        return null;
     }
     
     // private void PaintWorld()
