@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: ba30b5ad10906d145b2715c1a9446f41, type: 3}
+  m_Texture: {fileID: 2800000, guid: ca340c48d3acfb7468753143e2b8f0ae, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -558,18 +558,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68838b78223f2fb4facb1445d7296192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  penguinIcon:
-    image: {fileID: 25292132}
-    tex: {fileID: 2800000, guid: a3e168dcdf5f56f44aad44b52c87e64b, type: 3}
-  bearIcon:
-    image: {fileID: 535868666}
-    tex: {fileID: 2800000, guid: a3e168dcdf5f56f44aad44b52c87e64b, type: 3}
-  tigerIcon:
-    image: {fileID: 455206599}
-    tex: {fileID: 2800000, guid: a3e168dcdf5f56f44aad44b52c87e64b, type: 3}
-  elephantIcon:
-    image: {fileID: 1872422730}
-    tex: {fileID: 2800000, guid: a3e168dcdf5f56f44aad44b52c87e64b, type: 3}
+  penguinIcon: {fileID: 25292132}
+  bearIcon: {fileID: 535868666}
+  tigerIcon: {fileID: 455206599}
+  elephantIcon: {fileID: 1872422730}
   worldName: {fileID: 471724178}
   worldProgress: {fileID: 85304635}
 --- !u!4 &207964207
@@ -643,7 +635,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 35add2fc28f438c4da2c9a3a720ac55e, type: 3}
+  m_Texture: {fileID: 2800000, guid: 764f473ff64528941add603183a9953e, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -860,7 +852,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 6c10bc60954647740804c71290a16f8d, type: 3}
+  m_Texture: {fileID: 2800000, guid: bad642fa8c970d04183bec8165112b36, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -904,8 +896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59b3630ff2682f48bf8f536f1a0d37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotLimit: 200
-  areaLimit: 50
+  shotLimit: 1
+  areaLimit: 1
   vCamera: {fileID: 494465963}
   playerPrefab: {fileID: 1403686503367552002, guid: cf4f6d384650a1b409137cff2f2dfb39, type: 3}
   playerInstance: {fileID: 1630282509}
@@ -1118,6 +1110,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1154665647, guid: b0867a34e8d12744f8427a1a03c90b79, type: 3}
+      propertyPath: m_Sources.Array.data[0].sourceTransform
+      value: 
+      objectReference: {fileID: 1745907314}
     - target: {fileID: 3902722983356315640, guid: b0867a34e8d12744f8427a1a03c90b79, type: 3}
       propertyPath: m_Name
       value: Animal Parent
@@ -1132,7 +1128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902722983356315645, guid: b0867a34e8d12744f8427a1a03c90b79, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.11
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 3902722983356315645, guid: b0867a34e8d12744f8427a1a03c90b79, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1445,7 +1441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 915fce885e7a6a541b08b09e903e8a15, type: 3}
+  m_Texture: {fileID: 2800000, guid: d1d91de21524e3547b51da604f685359, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
