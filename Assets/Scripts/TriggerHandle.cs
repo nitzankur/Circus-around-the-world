@@ -28,6 +28,12 @@ public class TriggerHandle : MonoBehaviour
     //change the state of the world
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Respawn"))
+        {
+            print("entered respawn");
+            GameManager.ClosestRespawn = other.gameObject;
+        }
+        
         if (other.CompareTag(GameManager.Savanna)) GameManager.State = GameManager.Savanna;
         if (other.CompareTag(GameManager.Antarctica)) GameManager.State = GameManager.Antarctica;
         if (other.CompareTag(GameManager.Desert)) GameManager.State = GameManager.Desert;
@@ -39,7 +45,6 @@ public class TriggerHandle : MonoBehaviour
     {
         if (other.CompareTag("Counter"))
         {
-            print("counter");
             if (GameManager.State == GameManager.Savanna)  GameManager.SavannaAreaCounter++;
             else if(GameManager.State == GameManager.Antarctica) GameManager.AntarcticaAreaCounter++;
             else if (GameManager.State == GameManager.Jungle) GameManager.JungleAreaCounter++;

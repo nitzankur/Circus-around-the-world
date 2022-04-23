@@ -1,17 +1,19 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
+using Cinemachine;
 using DefaultNamespace;
-using UnityEditor.AnimatedValues;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
 
     [SerializeField] private int shotLimit,areaLimit;
-    
+    [SerializeField] private CinemachineVirtualCamera vCamera;
+    [SerializeField] private Player playerPrefab;
+    [SerializeField] private Player playerInstance;
+    [SerializeField] private GameObject middleRespawn;
+
     private string state;
+    private GameObject closestRespawn = null;
     private World savanna, antarctica, jungle, desert;
     public const string Savanna = "Savanna";
     public const string Antarctica = "Antarctica";
@@ -25,6 +27,38 @@ public class GameManager : MonoBehaviour
         antarctica = new World(Antarctica, _shared.shotLimit, _shared.areaLimit);
         desert = new World(Desert, _shared.shotLimit, _shared.areaLimit);
         jungle = new World(Jungle, _shared.shotLimit, _shared.areaLimit);
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(2))
+        {
+            print("respawn");
+            Respawn();
+        }
+    }
+
+    private void Respawn()
+    {
+        Vector3 position = (closestRespawn == null)
+            ? middleRespawn.transform.position
+            : closestRespawn.transform.position;
+        
+        Player player = Instantiate(playerPrefab, position, Quaternion.identity);
+        // player.seat.rotation = playerInstance.seat.rotation;
+        
+        vCamera.Follow = player.spine;
+        vCamera.LookAt = player.lookAt;
+        player.GetComponent<ZoomInScript>().vCamera = vCamera;
+        
+        Destroy(playerInstance.gameObject);
+        playerInstance = player;
+    }
+
+    public static GameObject ClosestRespawn
+    {
+        get => _shared.closestRespawn;
+        set => _shared.closestRespawn = value;
     }
 
     public static bool AntarcticaPaint => _shared.antarctica.Painted;
