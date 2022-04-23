@@ -69,7 +69,6 @@ public class TutorialManager : MonoBehaviour
         {
             if (_shared != null)
             {
-                print(value);
                 _shared.tutorialText.gameObject.SetActive(false);
                 if (value > START && value < IN_GAME)
                 {
@@ -87,7 +86,6 @@ public class TutorialManager : MonoBehaviour
 
     public static void StartGame()
     {
-        print("start");
         State = IN_GAME;
         _shared.asyncOperation.allowSceneActivation = true;
     }

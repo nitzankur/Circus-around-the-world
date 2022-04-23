@@ -5,6 +5,7 @@ public class PaintManager : Singleton<PaintManager>{
 
     public Shader texturePaint;
     public Shader extendIslands;
+    public static int colorRadius = 2;
 
     int prepareUVID = Shader.PropertyToID("_PrepareUV");
     int positionID = Shader.PropertyToID("_PainterPosition");

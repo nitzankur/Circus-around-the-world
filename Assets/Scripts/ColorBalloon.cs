@@ -11,7 +11,7 @@ public class ColorBalloon : MonoBehaviour
         Paintable p = other.collider.GetComponent<Paintable>();
         if(p != null){
             Vector3 pos = transform.position;
-            PaintManager.instance.paint(p, pos, radius: 2);
+            PaintManager.instance.paint(p, pos, radius: PaintManager.colorRadius);
         }
         
         Destroy(gameObject);
