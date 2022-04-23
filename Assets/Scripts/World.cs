@@ -54,7 +54,7 @@ namespace DefaultNamespace
 
         private void UpdateProgress()
         {
-            progress = ((float)areaCounter / areaLimit + (float)shotCounter / shotLimit) / 2;
+            progress = 100 * ((float)areaCounter / areaLimit + (float)shotCounter / shotLimit) / 2;
             painted = progress >= 1;
         }
     }
