@@ -19,6 +19,9 @@ public class ZoomInScript : MonoBehaviour
 
     private void Update()
     {
+        if(TutorialManager.State < TutorialManager.AIM)
+            return;
+        
         if (Input.GetButtonDown("Fire2"))
             ZoomIn();
         if (Input.GetButtonUp("Fire2"))
@@ -27,13 +30,13 @@ public class ZoomInScript : MonoBehaviour
     
     private void ZoomIn()
     {
-        print("in");
+        if (TutorialManager.State == TutorialManager.AIM)
+            TutorialManager.State++;
         animator.SetBool(Zoom, true);    
     }
 
     private void ZoomOut()
     {
-        print("out");
         animator.SetBool(Zoom, false);
     }
 }

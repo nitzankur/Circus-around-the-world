@@ -44,7 +44,7 @@ public class UnicycleController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (wheelCollider == null)
+        if (wheelCollider == null || TutorialManager.State < TutorialManager.LOOK)
             return;
         GetInput();
         Steer();
@@ -94,19 +94,19 @@ public class UnicycleController : MonoBehaviour
     {
         steeringAngle = xAxis.Value + horizInput;
         wheelCollider.steerAngle = steeringAngle;
+        
+        if (TutorialManager.State == TutorialManager.LOOK && Math.Abs(xAxis.Value) >= 90)
+            TutorialManager.State++;
     }
 
     private void GetInput()
     {
-        if (rigidbody.isKinematic)
-        {
-            rigidbody.isKinematic = false;
-            wheelCollider.brakeTorque = 0;
-        }
-
         xAxis.Update(Time.fixedDeltaTime);
         yAxis.Update(Time.fixedDeltaTime);
-        
+
+        if (TutorialManager.State < TutorialManager.MOVE)
+            return;
+
         float currVert = Input.GetAxis("Vertical") * speed;
         horizInput = Input.GetAxis("Horizontal") * 90;
 
@@ -116,6 +116,9 @@ public class UnicycleController : MonoBehaviour
             wheelCollider.brakeTorque = 0;
 
         vertInput = currVert;
+
+        if (TutorialManager.State == TutorialManager.MOVE && vertInput + horizInput != 0)
+            TutorialManager.State++;
     }
 
     #endregion
