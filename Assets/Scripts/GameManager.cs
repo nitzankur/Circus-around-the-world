@@ -51,9 +51,19 @@ public class GameManager : MonoBehaviour
             Respawn(middleRespawn);
         }
 
+        ChangeScene();
+    }
+
+    private void ChangeScene()
+    {
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadSceneAsync("Openning");
+        }
+
+        if (TakenAnimals == 4)
+        {
+            SceneManager.LoadSceneAsync("EndScreen");
         }
     }
 
@@ -86,6 +96,8 @@ public class GameManager : MonoBehaviour
     public static bool DesertPaint => _shared.desert.Painted;
 
     public static bool JunglePaint => _shared.jungle.Painted;
+    
+    public static int TakenAnimals;
 
     private void Awake()
     {

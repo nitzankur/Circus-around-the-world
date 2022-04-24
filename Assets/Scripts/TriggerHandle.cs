@@ -24,8 +24,12 @@ public class TriggerHandle : MonoBehaviour
                         GameManager.State == GameManager.Savanna && GameManager.SavannaPaint ||
                         GameManager.State == GameManager.Jungle && GameManager.JunglePaint) UIManager.ChangeTexture(GameManager.State);
                 else disappear = false;
-                
-                if(disappear) childTrans.gameObject.SetActive(false);
+
+                if (disappear)
+                {
+                    childTrans.gameObject.SetActive(false);
+                    GameManager.TakenAnimals++;
+                }
             }
         }
 
