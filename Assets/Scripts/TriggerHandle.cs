@@ -38,7 +38,7 @@ public class TriggerHandle : MonoBehaviour
         
         
     }
-    //change the state of the world
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Respawn"))
@@ -52,13 +52,17 @@ public class TriggerHandle : MonoBehaviour
             || other.CompareTag(GameManager.Jungle))
         {
             GameManager.State = other.tag;
+            AreasCounter(other);
         }
-        AreasCounter(other);
+
+        if (other.CompareTag("Water"))
+        {
+            GameManager.ResetCharacter();
+        }
     }
 
     private void AreasCounter(Collider other)
     {
-        print(other.name);
         if (other.CompareTag("Counter"))
         {
             if (GameManager.State == GameManager.Savanna)  GameManager.SavannaAreaCounter++;

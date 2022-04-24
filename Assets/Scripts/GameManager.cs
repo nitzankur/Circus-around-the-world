@@ -173,11 +173,8 @@ public class GameManager : MonoBehaviour
         return null;
     }
     
-    // private void PaintWorld()
-    // {
-    //     if (GameManager.antarcticaShotCounter >= shotLimit && GameManager.antarcticaAreaCounter >= areaLimit) GameManager.antarcticaPaint = true;
-    //     if (GameManager.jungleShotCounter >= shotLimit && GameManager.jungleAreaCounter >=areaLimit) GameManager.JunglePaint = true;
-    //     if (GameManager.savannaShotCounter >= shotLimit && GameManager.savannaAreaCounter >=areaLimit) GameManager.savannaPaint = true;
-    //     if (GameManager.desertShotCounter >= shotLimit && GameManager.desertAreaCounter >=areaLimit) GameManager.DesertPaint = true;
-    // }
+    public static void ResetCharacter()
+    {
+        _shared.Respawn(ClosestRespawn);
+    }
 }
