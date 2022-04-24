@@ -52,8 +52,8 @@ public class TriggerHandle : MonoBehaviour
             || other.CompareTag(GameManager.Jungle))
         {
             GameManager.State = other.tag;
-            AreasCounter(other);
         }
+        AreasCounter(other);
     }
 
     private void AreasCounter(Collider other)
