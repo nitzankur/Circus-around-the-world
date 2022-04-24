@@ -39,19 +39,24 @@ public class GameManager : MonoBehaviour
         
         if (Input.GetMouseButtonDown(2))
         {
-            Respawn();
+            var respawnPoint = closestRespawn == null
+                ? middleRespawn
+                : closestRespawn;
+            Respawn(respawnPoint);
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Respawn(middleRespawn);
         }
     }
 
-    private void Respawn()
+    private void Respawn(GameObject respawn)
     {
+        Vector3 position = respawn.transform.position;
         if (TutorialManager.State == TutorialManager.RESPAWN)
             TutorialManager.State++;
-        
-        Vector3 position = (closestRespawn == null)
-            ? middleRespawn.transform.position
-            : closestRespawn.transform.position;
-        
+
         Player player = Instantiate(playerPrefab, position, Quaternion.identity);
 
         vCamera.Follow = player.spine;

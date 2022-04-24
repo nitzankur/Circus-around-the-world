@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintColor: {r: 1, g: 1, b: 1, a: 0}
-  radius: 1
+  radius: 4
   strength: 1
   hardness: 1
 --- !u!54 &6317815662514833342
