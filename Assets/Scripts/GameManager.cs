@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadSceneAsync("Openning");
         }
 
-        if (TakenAnimals == 1)
+        if (TakenAnimals == 4)
         {
             SceneManager.LoadSceneAsync("EndScreen");
         }

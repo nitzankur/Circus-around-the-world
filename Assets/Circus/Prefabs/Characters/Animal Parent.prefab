@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154665644}
-  m_LocalRotation: {x: -0.00068398437, y: -0.99926126, z: -0.021439584, w: 0.031888038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
@@ -115,7 +115,6 @@ GameObject:
   - component: {fileID: 3902722983356315647}
   - component: {fileID: 3902722983356315646}
   - component: {fileID: 3902722983356315641}
-  - component: {fileID: 1460784195}
   m_Layer: 0
   m_Name: Animal Parent
   m_TagString: Animal
@@ -217,19 +216,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
---- !u!114 &1460784195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3902722983356315640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a5b7b9cfe71f64c87d5ce7428ae05a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
 --- !u!1 &3902722984282135557
 GameObject:
   m_ObjectHideFlags: 0
