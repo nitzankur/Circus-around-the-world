@@ -25,7 +25,6 @@ public class Shot : MonoBehaviour
             curTime = Time.time;
             ShortSooting();
         }
-
         if (Input.GetButton("Fire1"))
         {
             if ((Time.time - curTime) > 0.2f)

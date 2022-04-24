@@ -52,12 +52,13 @@ public class TriggerHandle : MonoBehaviour
             || other.CompareTag(GameManager.Jungle))
         {
             GameManager.State = other.tag;
-            AreasCounter(other);
         }
+        AreasCounter(other);
     }
 
     private void AreasCounter(Collider other)
     {
+        print(other.name);
         if (other.CompareTag("Counter"))
         {
             if (GameManager.State == GameManager.Savanna)  GameManager.SavannaAreaCounter++;
