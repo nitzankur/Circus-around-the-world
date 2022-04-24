@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class UIManager : MonoBehaviour
 {
     [Serializable]
@@ -17,8 +18,9 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private RawImage penguinIcon, bearIcon, tigerIcon, elephantIcon;
     [SerializeField] private TextMeshProUGUI worldName, worldProgress;
-    
+
     private static UIManager _shared;
+
 
     void Start()
     {
@@ -68,4 +70,5 @@ public class UIManager : MonoBehaviour
         _shared.worldName.text = $"{world.Name}:";
         _shared.worldProgress.text = $"{Math.Round(world.Progress, 2)}%";
     }
+    
 }

@@ -2,6 +2,7 @@ using System;
 using Cinemachine;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,6 +49,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             Respawn(middleRespawn);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadSceneAsync("Openning");
         }
     }
 
