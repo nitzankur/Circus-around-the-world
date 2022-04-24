@@ -15,6 +15,7 @@ TagManager:
   - Counter4
   - Counter
   - Gate
+  - Water
   layers:
   - Default
   - TransparentFX
