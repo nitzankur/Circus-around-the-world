@@ -45,10 +45,10 @@ public class TutorialManager : MonoBehaviour
         {
             _shared = this;
             State = LOOK;
-            StartCoroutine(_shared.LoadScene());
+            // StartCoroutine(_shared.LoadScene());
         }
     }
-
+    
     private void Update()
     {
         if (wait > 0)
@@ -105,9 +105,9 @@ public class TutorialManager : MonoBehaviour
         {
             //Output the current progress
             progressText.text = "Loading Game: " + (asyncOperation.progress * 100) + "%";
+            yield return null;
         }
 
         progressText.text = "Loading Game: 100%";
-        yield return null;
     }
 }
