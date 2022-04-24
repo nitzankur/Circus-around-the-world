@@ -33,4 +33,8 @@ public class Bullet : MonoBehaviour
     {
         _counter++;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Water")) Destroy(gameObject);
+    }
 }
