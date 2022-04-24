@@ -3368,6 +3368,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4e5533996e8e1674c94c83dcea06c7bc, type: 2}
+    - target: {fileID: -4232867613772234363, guid: ab1855753012a574da94c355dc4696d9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 240a8c21bae9b694ba8a8de9becbf55a, type: 2}
     - target: {fileID: -3761591217242229843, guid: ab1855753012a574da94c355dc4696d9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3576,7 +3580,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141297629}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2997920eb18e4e438645fc26e792305, type: 3}
   m_Name: 
