@@ -58,6 +58,7 @@ public class TriggerHandle : MonoBehaviour
 
     private void AreasCounter(Collider other)
     {
+        print(other.name);
         if (other.CompareTag("Counter"))
         {
             if (GameManager.State == GameManager.Savanna)  GameManager.SavannaAreaCounter++;
