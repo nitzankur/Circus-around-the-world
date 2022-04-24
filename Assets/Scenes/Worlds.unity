@@ -2373,8 +2373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59b3630ff2682f48bf8f536f1a0d37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotLimit: 1
-  areaLimit: 1
+  shotLimit: 40
+  areaLimit: 10
   vCamera: {fileID: 494465963}
   playerPrefab: {fileID: 1403686503367552002, guid: cf4f6d384650a1b409137cff2f2dfb39, type: 3}
   playerInstance: {fileID: 1630282509}
@@ -3139,7 +3139,7 @@ Transform:
   m_LocalScale: {x: 0.7142855, y: 0.7142857, z: 0.7142855}
   m_Children: []
   m_Father: {fileID: 350258062}
-  m_RootOrder: 9
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1066304127
 AudioSource:
@@ -4076,7 +4076,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 849211210}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1237541430
 AudioSource:
