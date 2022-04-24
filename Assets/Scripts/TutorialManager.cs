@@ -32,19 +32,20 @@ public class TutorialManager : MonoBehaviour
         "Press the space bar to interact with objects\n\nInteract with the green gate thingy to start the game!"
     };
     
-    private int state;
+    private int state = START;
     private AsyncOperation asyncOperation;
 
     private float start;
     private float wait = 1;
-    private int nextState;
+    private int nextState = START;
 
     private void Awake()
     {
         if (_shared == null)
         {
             _shared = this;
-            // StartCoroutine(_shared.LoadScene());
+            State = LOOK;
+            StartCoroutine(_shared.LoadScene());
         }
     }
  
@@ -68,6 +69,8 @@ public class TutorialManager : MonoBehaviour
         {
             if (_shared != null)
             {
+                if(value <= _shared.state || value <= _shared.nextState)
+                    return;
                 _shared.tutorialText.gameObject.SetActive(false);
                 if (value > START && value < IN_GAME)
                 {
