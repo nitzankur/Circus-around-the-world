@@ -599,8 +599,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a1d3a18d28e8e704ea0bdbe3f039a4f3, type: 2}
+  m_sharedMaterial: {fileID: -1658733861977184406, guid: a1d3a18d28e8e704ea0bdbe3f039a4f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2088,7 +2088,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5fb215e180d4f91418c257f5991fb88f, type: 3}
+  m_Texture: {fileID: 2800000, guid: 865467d48b7252240a57030a30fe266e, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2202,7 +2202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 35, y: 0}
+  m_AnchoredPosition: {x: 25, y: 0}
   m_SizeDelta: {x: 350, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &471724178
@@ -2227,8 +2227,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: CIRCUS
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a1d3a18d28e8e704ea0bdbe3f039a4f3, type: 2}
+  m_sharedMaterial: {fileID: -1658733861977184406, guid: a1d3a18d28e8e704ea0bdbe3f039a4f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2646,7 +2646,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: a5ebbd970aef11f4081479d3850f6194, type: 3}
+  m_Texture: {fileID: 2800000, guid: 5fb215e180d4f91418c257f5991fb88f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3775,7 +3775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 830, y: 495}
+  m_AnchoredPosition: {x: 830, y: 490}
   m_SizeDelta: {x: 210, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &996906975
@@ -8132,7 +8132,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 865467d48b7252240a57030a30fe266e, type: 3}
+  m_Texture: {fileID: 2800000, guid: a5ebbd970aef11f4081479d3850f6194, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
