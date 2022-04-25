@@ -58,11 +58,13 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            TakenAnimals = 0;
             SceneManager.LoadSceneAsync("Openning");
         }
 
         if (TakenAnimals == 4)
         {
+            TakenAnimals = 0;
             SceneManager.LoadSceneAsync("EndScreen");
         }
     }
@@ -97,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     public static bool JunglePaint => _shared.jungle.Painted;
     
-    public static int TakenAnimals;
+    public static int TakenAnimals = 0;
 
     private void Awake()
     {
