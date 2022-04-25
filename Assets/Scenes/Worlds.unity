@@ -2657,7 +2657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59b3630ff2682f48bf8f536f1a0d37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotLimit: 40
+  shotLimit: 200
   areaLimit: 10
   vCamera: {fileID: 494465963}
   playerPrefab: {fileID: 1403686503367552002, guid: cf4f6d384650a1b409137cff2f2dfb39, type: 3}
