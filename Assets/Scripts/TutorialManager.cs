@@ -103,13 +103,13 @@ public class TutorialManager : MonoBehaviour
         asyncOperation.allowSceneActivation = false;
 
         //When the load is still in progress, output the Text and progress bar
-        while (!asyncOperation.isDone)
+        while (asyncOperation.progress >= 0.9f)
         {
             //Output the current progress
             progressText.text = "Loading Game: " + (asyncOperation.progress * 100) + "%";
             yield return null;
         }
-
+        
         progressText.text = "Loading Game: 100%";
     }
 }
