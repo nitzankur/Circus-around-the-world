@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class TriggerHandle : MonoBehaviour
 {
+    [SerializeField] public UnityEvent animalNotAvailable;
     private void OnTriggerStay(Collider other)
     {
         if (TutorialManager.State < TutorialManager.INTERACT)
@@ -29,6 +27,11 @@ public class TriggerHandle : MonoBehaviour
                 {
                     childTrans.gameObject.SetActive(false);
                     GameManager.TakenAnimals++;
+                }
+                else
+                {
+                    print("invoke");
+                    animalNotAvailable.Invoke();
                 }
             }
         }
